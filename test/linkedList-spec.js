@@ -237,6 +237,11 @@ describe('Linked List Generator', function() {
       it('should remove a node by it\'s index in the Linked List', function () {
         // urlList Tests
         // remove middle node
+        console.log('testbody');
+        var testbody = urlList.getHead();
+        for (var propName in testbody) {
+        console.log(propName, testbody[propName]);
+        }
         urlList.remove(2);
 
         // test new node at position 2
@@ -310,7 +315,7 @@ describe('Linked List Generator', function() {
         expect(urlList.get(1).value).to.be.equal('devleague.com');
         expect(urlList.get(2).value).to.be.equal('mozilla.org');
         expect(urlList.get(3).value).to.be.equal('icann.org');
-        
+
         // insert into index `1`
         bookList.insert('The Stranger', 1);
         expect(bookList.getHead().value).to.be.equal('Neuromancer');

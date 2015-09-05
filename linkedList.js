@@ -3,12 +3,15 @@
  * @description  Main Module
  * @return {Object} an object exposing methods to be used to manipulate a linked list
  */
+// var eyes = require('eyes')
+
 function linkedListGenerator() {
   var head = null;
   var newNode = {};
   var tail = null;
+  var length = 0;
 
-  function createNode(x) {
+  function _createNode(x) {
     return {
       value : x,
       next : null
@@ -24,41 +27,51 @@ function linkedListGenerator() {
   }
 
   function _add(x) {
-    var newNode = createNode(x);
+    var newNode = _createNode(x);
     if (_getTail() === null) {
       head = newNode;
     } else {
-      _getTail.next = newNode;
+      _getTail().next = newNode;
     }
     tail = newNode;
+    length++;
     return newNode;
   }
 
   function _get(find) {
-    var curNode = _getHead();
-    if (curNode === null) {
-      return false;
-    }
+    var curNode = this.getHead();
+    var counter = 0;
 
-    // looping through value
-    if (find === 0) {
-      return curNode;
-    }
-    for (var i = 1; i < find; i++) {
-      if(curNode.next === null) {
+    while ( counter < find) {
+      if (curNode === tail) {
         return false;
       }
-      // if we find the value we return it
       curNode = curNode.next;
+      counter++;
     }
-    if (curNode === undefined) {
-      return false;
-    } else {
-      return curNode;
-    }
+    return curNode;
   }
-  function _remove() {
-    // return
+
+  function _remove(num) {
+    var curNode = _get(num);
+    var preNode = _get(num - 1);
+    if (num >= length) {
+      return false;
+    }
+    if (num === 0 && length === 1 ) {
+      head = null;
+      tail = null;
+    } else {
+      if ( num === 0) {
+        head = curNode.next;
+      } else if ( num === length - 1) {
+        tail = preNode;
+        preNode.next = null;
+      } else {
+        preNode.next = curNode.next;
+      }
+    }
+    length--;
   }
 
   function _insert() {
@@ -73,3 +86,13 @@ function linkedListGenerator() {
     insert : _insert
   };
 }
+console.log('testbody');
+var testbody = urlList.getHead();
+for (var propName in testbody) {
+  console.log(propName, testbody[propName]);
+}
+// var movies = linkedListGenerator();
+// eyes.inspect(movies.add('star wars'));
+// eyes.inspect(movies.add('batman'));
+// eyes.inspect(movies.getHead());
+// eyes.inspect(movies.getTail());
