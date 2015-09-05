@@ -53,8 +53,8 @@ function linkedListGenerator() {
   }
 
   function _remove(num) {
-    var curNode = _get(num);
-    var preNode = _get(num - 1);
+    var curNode = this.get(num);
+    var preNode = this.get(num - 1);
     if (num >= length) {
       return false;
     }
@@ -74,8 +74,10 @@ function linkedListGenerator() {
     length--;
   }
 
-  function _insert() {
-    // return
+  function _insert(val, num) {
+    var curNode = this.get(val,num);
+
+
   }
   return {
     getHead : _getHead,
@@ -86,8 +88,14 @@ function linkedListGenerator() {
     insert : _insert
   };
 }
+var urlList = linkedListGenerator();
 console.log('testbody');
+urlList.add(1);
+urlList.add(2);
+urlList.add(3);
+urlList.remove(1);
 var testbody = urlList.getHead();
+console.log(testbody);
 for (var propName in testbody) {
   console.log(propName, testbody[propName]);
 }
