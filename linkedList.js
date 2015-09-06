@@ -11,6 +11,7 @@ function linkedListGenerator() {
   var tail = null;
   var length = 0;
 
+  //creates a new node
   function _createNode(x) {
     return {
       value : x,
@@ -18,14 +19,17 @@ function linkedListGenerator() {
     };
   }
 
+  //points to our head
   function _getHead() {
     return head;
   }
 
+  //points to our tail
   function _getTail() {
     return tail;
   }
 
+  //takes a new node and adds it to our linked list
   function _add(x) {
     var newNode = _createNode(x);
     if (_getTail() === null) {
@@ -38,6 +42,7 @@ function linkedListGenerator() {
     return newNode;
   }
 
+  //reads through our list and returns the node we are looking for
   function _get(find) {
     var curNode = this.getHead();
     var counter = 0;
@@ -52,6 +57,7 @@ function linkedListGenerator() {
     return curNode;
   }
 
+  //reads through our list and removes desired node
   function _remove(num) {
     var curNode = this.get(num);
     var preNode = this.get(num - 1);
@@ -74,10 +80,25 @@ function linkedListGenerator() {
     length--;
   }
 
+  //reads through our list and adds a new node in desired index
   function _insert(val, num) {
-    var curNode = this.get(val,num);
-
-
+    var curNode = this.get( num );
+    var preNode = this.get( num - 1);
+    var tempNode;
+    if ( num >= length || num < 0) {
+      return false;
+    // } else if ( num === length ) {
+    //   this.add( val );
+    } else if ( num === 0 ) {
+      tempNode = _createNode( val );
+      tempNode.next = curNode;
+      head = tempNode;
+    } else {
+      tempNode = _createNode( val );
+      preNode.next = tempNode;
+      tempNode.next = curNode;
+    }
+    length++;
   }
   return {
     getHead : _getHead,
@@ -94,7 +115,7 @@ urlList.add(1);
 urlList.add(2);
 urlList.add(3);
 urlList.remove(1);
-var testbody = urlList.getHead();
+var testbody = urlList.insert;
 console.log(testbody);
 for (var propName in testbody) {
   console.log(propName, testbody[propName]);
